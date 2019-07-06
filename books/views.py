@@ -9,8 +9,9 @@ def books(request):
 @login_required(login_url="/accounts/signup")
 def create(request):
     if request.method == 'POST':
-        if request.POST['text']:
+        if request.POST['title']:
             book = Book()
+            book.title = request.POST['title']
             book.text = request.POST['text']
             book.save()
             return redirect('/books/'+str(book.id))
